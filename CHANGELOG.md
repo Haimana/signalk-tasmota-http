@@ -48,6 +48,8 @@ Robustness release, focused on the `timeout` errors seen on some installs.
   (`schemas/groups/electrical.json`); descriptions now say "(VA)" / "(var)".
 
 ### Added
+- App Store metadata: `signalk.displayName` and `signalk.appIcon` (`assets/icon.png`, TASMOTA symbol, GPL-3.0).
+- README rewritten: configuration table, paths, PUT example, troubleshooting.
 - Tests (`npm test`, `node:test`, mock Tasmota HTTP server, no dependencies).
 
 Configuration is backward compatible: existing settings keep working unchanged.

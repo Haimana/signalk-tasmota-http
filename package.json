@@ -33,8 +33,13 @@
   },
   "files": [
     "index.js",
+    "assets/icon.png",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"
-  ]
+  ],
+  "signalk": {
+    "displayName": "Tasmota HTTP switches",
+    "appIcon": "./assets/icon.png"
+  }
 }
