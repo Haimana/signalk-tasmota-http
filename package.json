@@ -1,11 +1,11 @@
 {
   "name": "signalk-tasmota-http",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Control Tasmota smart plugs/relays from Signal K over HTTP (no MQTT, no Node-RED), with optional energy metering",
   "homepage": "https://github.com/Haimana/signalk-tasmota-http",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/"
   },
   "keywords": [
     "signalk-node-server-plugin",
@@ -30,5 +30,11 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
 }

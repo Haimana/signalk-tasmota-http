@@ -22,11 +22,24 @@ Then enable **Tasmota HTTP switches** under Server → Plugin Config.
 
 | Field | Notes |
 |-------|--------|
-| id | e.g. `charger` |
-| host | device IP |
+| poll interval | seconds between the end of one poll cycle and the start of the next (default 5) |
+| request timeout | overall deadline per HTTP request, seconds (default 4, clamped below the poll interval) |
+| id | e.g. `charger` (letters, digits, `_`, `-`) |
+| host | device IP (a fixed IP is more reliable than `.local`); a pasted URL like `http://1.2.3.4/` is accepted |
 | power channel | `1` for single relay |
-| poll energy | Status 8 ENERGY |
+| poll energy | one `Status 0` request per poll (state + ENERGY); off = `Status 11` (state only) |
 | publish energy on electrical.ac paths | per-plug checkbox |
+
+## How polling works
+
+- One request per device per poll; requests to the same device (polls and switch
+  commands) never overlap.
+- The next poll cycle starts only after the previous one has finished.
+- A device that fails is retried with back-off (1×, 2×, 4× … the interval, max 60 s);
+  going offline and coming back are logged once each.
+- The plugin status shows a per-device summary, e.g. `charger: OK` or
+  `charger: offline since 06:25:03Z – timeout after 4000 ms (172.22.22.50:80 "Status 0", 4001 ms)`
+  (time in UTC). The error clears automatically when the device answers again.
 
 ## Paths
 
@@ -46,6 +59,12 @@ plus `electrical.ac.<id>.{energy,energyToday,energyYesterday}` (Joules)
 ## Tasmota
 
 Device must be reachable on HTTP from the Pi. For correct voltage/current/power, calibrate on the device (`VoltageSet`, `CurrentSet`, `PowerSet`) — Signal K publishes the values Tasmota reports.
+
+## Development
+
+```bash
+npm test   # node:test + mock Tasmota server, no dependencies (Node >= 18)
+```
 
 ## License
 
