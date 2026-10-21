@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 — 2026-10-21
+
+- Include test suite in npm package so the Plugin Registry can run it.
+- Normalize `repository.url` in package.json.
+
 ## 1.1.0 — 2026-10-18
 
 Robustness release, focused on the `timeout` errors seen on some installs.
