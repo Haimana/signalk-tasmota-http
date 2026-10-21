@@ -1,6 +1,14 @@
 # Changelog
 
+## 1.1.2 — 2026-10-21
+
+Fix the test script so the suite runs on Node 22+ (and in the Signal K Plugin Registry).
+
+- `npm test` is now `node --test test/*.test.js`; Node ≥ 22 no longer accepts a bare directory (`node --test test/` failed with "Cannot find module").
+
 ## 1.1.1 — 2026-10-21
+
+Packaging-only release: ship the test suite with the npm package.
 
 - Include test suite in npm package so the Plugin Registry can run it.
 - Normalize `repository.url` in package.json.
@@ -60,4 +68,5 @@ Robustness release, focused on the `timeout` errors seen on some installs.
 Configuration is backward compatible: existing settings keep working unchanged.
 
 ## 1.0.0
-- Initial release.
+
+Initial release: poll and switch Tasmota plugs over HTTP, with optional energy metering.
